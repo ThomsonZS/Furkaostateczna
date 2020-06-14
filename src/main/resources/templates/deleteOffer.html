@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+    <head>
+        <title>Usuwanie oferty</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <div class="page-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/BlondeWomanDrivingCar.svg" style="float: right" height="86pt"/>
+
+                <h1>Furka4U <small>Najlepsze furki w necie</small></h1>
+                <h4>
+                <a href="/">Przeglądaj ogłoszenia</a> | <a href="/newoffer">Dodaj ogłoszenie</a>
+                </h4>
+            </div>
+            <h2>Ogłoszenie usunięte</h2>
+
+            <div class="row">
+                <div class="col-sm-2"><b>ID oferty:</b></div>
+                <div class="col-sm-8"><span th:text="${offer.id}" /></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"><b>Tytuł:</b></div>
+                <div class="col-sm-8"><span th:text="${offer.title}" /></div>
+            </div>
+
+            <p>
+                <a href="/">Powrót do listy ofert</a>
+            </p>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+    <head>
+        <title>Lista ofert</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <div class="page-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/BlondeWomanDrivingCar.svg" style="float: right" height="86pt"/>
+
+                <h1>Furka4U <small>Najlepsze furki w necie</small></h1>
+                <h4>
+                <a href="/">Przeglądaj ogłoszenia</a> | <a href="/newoffer">Dodaj ogłoszenie</a>
+                </h4>
+            </div>
+            <!-- 
+            WSZYSTKO W TYM KOMENTARZU TO SĄ ZADANIA WYKONYWANE W TRAKCIE ROBIENIA LABORKI
+            <p th:each="cm : ${carManufacturers}" th:text="${cm.name}"></p>
+            <br />
+            Zad 1, rodzaje nadwozia:
+            <p th:each="bs : ${bodyStyles}" th:text="${bs.name}"></p>
+            Zad 1, rodzaje paliwa
+            <p th:each="ft : ${fuelTypes}" th:text="${ft.name}"></p>
+            Lista wszystkich aut producenta o id 3: <br />
+            <p th:each="item : ${carModels}" th:text="${item.name}"></p>
+            zadanie 2, lista wszystkich ofert
+            <p th:each="offer : ${offers}" th:text="${offer.title}"></p>
+            <br />
+            zadanie 2, lista ofert sprzedaży określonego modelu samochodu np.10
+            <p th:each="offer : ${offersByModelId}" th:text="${offer.title}"></p>
+            <br />
+            zadanie 2, zadanie 2, lista ofert  sprzedaży określonej marki np o id 12
+            <p th:each="offer : ${offersByManufacturerId}" th:text="${offer.title}"></p>
+            <br />
+            zadanie 2, zwracanie pojedynczej oferty na podstawie jej id np. 3
+            <p th:each="offer : ${oneOffer}" th:text="${oneOffer.title}"></p>
+            -->
+            <div id="offerFilter" class="panel panel-default"><!-- furka4y cz.3, lista z producentami, jesli wybierzemy jakiegos to pokażą się tylko oferty tego jednego producenta -->
+                <div class="panel-heading">Szukaj ofert</div>
+                <div class="panel-body">
+                    <form th:object="${offerFilter}" id="offerFilterForm" action="/" method="get" class="form-inline">
+                        <select th:field="*{manufacturerId}" class="form-control">
+                            <option th:each="manufacturer : ${carManufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
+                        </select>
+                        <select th:field="*{modelId}" class="form-control">
+                            <option th:each="model : ${carModels}" th:value="${model.id}" th:text="${model.name}"></option>
+                        </select>
+                        szukaj po słowie  <input type="text" th:field="*{description}" class="form-control"/>
+                        <input type="submit" value="Filtruj" class="form-control"/>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Tytuł</th>
+                    <th>Marka</th>
+                    <th>Model</th>
+                    <th>Rocznik</th>
+                    <th>Cena</th>
+                    <th></th>
+                </tr>
+                <tr th:each="offer : ${offers}">
+                    <td th:text="${offer.title}"></td>
+                    <td th:text="${offer.model.manufacturer.name}">.manufacturer.name</td>
+                    <td th:text="${offer.model.name}"></td>
+                    <td th:text="${offer.year}"></td>
+                    <td class="text-right">
+                        <span th:text="${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')}"></span> zł
+                    </td>
+                    <td><a th:href="|/offer/${offer.id}|">Pokaż</a></td>
+                </tr>
+            </table>
+            ><a th:href="|/newoffer|" class="btn btn-primary">Dodaj</a>
+        </section>
+    </body>
+</html>

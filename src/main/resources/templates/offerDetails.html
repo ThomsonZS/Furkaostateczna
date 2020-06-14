@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+    <head>
+        <title th:text="${offer.title}">Szczegóły oferty</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <div class="page-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/BlondeWomanDrivingCar.svg" style="float: right" height="86pt"/>
+
+                <h1>Furka4U <small>Najlepsze furki w necie</small></h1>
+                <h4>
+                <a href="/">Przeglądaj ogłoszenia</a> | <a href="/newoffer">Dodaj ogłoszenie</a>
+                </h4>
+            </div>
+            <h1 th:text="${offer.title}"></h1>
+            <h2>
+                Cena: 
+                <span th:text="${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')}"></span> zł
+            </h2>
+                
+            <table th:object="${offer}" class="table">
+                <tr>
+                    <th>Marka:</th>
+                    <td th:text="*{model.manufacturer.name}"></td>
+                    <th>Nadwozie:</th>
+                    <td th:text="|*{bodyStyle.name} *{doors}D|"></td> <!-- furka4y cz.3 zad 1 -->
+                </tr>
+                <tr>
+                    <th>Model:</th>
+                    <td th:text="*{model.name}"></td>
+                    <th>Kolor:</th>
+                    <td th:text="*{colour}"></td>
+                </tr>
+                <tr>
+                    <th>Rok produkcji</th>
+                    <td th:text="${offer.year}"></td>
+                    <th>Przebieg</th>
+                    <td th:text="${offer.mileage}"></td>
+                </tr>
+                <tr>
+                    <th>Pojemność i moc silnika</th>
+                    <td th:text="|${offer.engineSize} , ${offer.enginePower}|"></td>
+                    <th>Rodzaj paliwa</th>
+                    <td th:text="*{fuelType.name}"></td><!-- furka4y cz.3 zad 1 -->
+                </tr>
+            </table>
+            <div th:text="${offer.description}" class="well">
+                
+            </div>
+            <br /><br />
+            <div>
+                <a th:href="|/|" class="btn btn-primary">Powrót do listy ogłoszeń</a>            
+                <a th:href="|/deleteoffer/${offer.id}|" class="btn btn-danger">Usuń ogłoszenie</a> <!-- zwróć uwage na link odnośnika
+                                                                                                   jest tutaj ${offer.id} - czyli w to miejsce w linku wygeneruje sie konkretne id ogłoszenia do usunięcia 
+                                                                                                   i z tego linku zostanie ono przesłane do naszego kontrolera w springu -->
+                <a th:href="|/editoffer/${offer.id}|" class="btn btn-primary">Edytuj ogłoszenie</a>
+            </div>
+        </section>
+    </body>
+</html>
