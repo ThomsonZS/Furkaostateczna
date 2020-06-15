@@ -47,6 +47,7 @@
                 <div class="panel-body">
                     <form th:object="${offerFilter}" id="offerFilterForm" action="/" method="get" class="form-inline">
                         <select th:field="*{manufacturerId}" class="form-control">
+                            <option value="">Marka</option>
                             <option th:each="manufacturer : ${carManufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
                         </select>
                         <select th:field="*{modelId}" class="form-control">
