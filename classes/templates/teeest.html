@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+    <head>
+        <title layout:title-pattern="Furka4U - $CONTENT_TITLE">Furka4U cz.1</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+    </head>
+    <body>
+        CarManufacturer o id <span th:text="${cManuf1.id}"></span> = <span th:text="${cManuf1.name}"></span><br />
+        <br /><br />
+        CarModel o id <span th:text="${cMod1.id}"></span> = <span th:text="${cMod1.name}"></span><br />
+    </body>
+</html>
