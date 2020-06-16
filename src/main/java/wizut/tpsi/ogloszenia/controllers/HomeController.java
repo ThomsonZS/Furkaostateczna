@@ -69,13 +69,14 @@ public class HomeController {
         List<CarManufacturer> carManufacturers = offersService.getCarManufacturers();
         List<CarModel> carModels = null;
         List<Offer> offers;
-        if((offerFilter.getManufacturerId()!=null)&&(offerFilter.getModelId()==null)) { //furka4y cz.3. 
+        if(offerFilter.getManufacturerId()!=null && offerFilter.getModelId()==null) { //furka4y cz.3.
             offers = offersService.getOffersByManufacturer(offerFilter.getManufacturerId(),offerFilter.getDescription());
             carModels=offersService.getCarModels(offerFilter.getManufacturerId()); //furka f4y cz.3, Zadanie 3  DODATKOWE. 
         } 
-        else if (offerFilter.getModelId()!=null) {//furka f4y cz.3, Zadanie 3  DODATKOWE. 
+        else if ((offerFilter.getManufacturerId()!=null) &&(offerFilter.getModelId()!=null)) {//furka f4y cz.3, Zadanie 3  DODATKOWE.
             offers = offersService.getOffersByModel(offerFilter.getModelId());
             carModels=offersService.getCarModels(offerFilter.getManufacturerId());
+
         }
         else { 
             offers = offersService.getOffers();

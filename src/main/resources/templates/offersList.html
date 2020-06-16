@@ -51,6 +51,7 @@
                             <option th:each="manufacturer : ${carManufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
                         </select>
                         <select th:field="*{modelId}" class="form-control">
+                            <option value="">Model</option>
                             <option th:each="model : ${carModels}" th:value="${model.id}" th:text="${model.name}"></option>
                         </select>
                         szukaj po słowie  <input type="text" th:field="*{description}" class="form-control"/>
